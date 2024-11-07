@@ -76,17 +76,5 @@ class ProjectSeeder extends Seeder
 
         }
 
-
-        // for($i = 0; $i < 30; $i++){
-        //     $newProject = new Project();
-        //     $newProject->type_id = $faker->randomElement($typesId);
-        //     $newProject->name = $faker->realTextBetween(5,50);
-        //     $newProject->description = $faker->realTextBetween(100, 500);
-        //     $newProject->start_date = $faker->date('Y-m-d','now');
-        //     $newProject->end_date = $faker->date('Y-m-d','now');
-        //     $newProject->project_manager = $faker->firstName();
-        //     $newProject->save();
-        // };
-
     }
 }
