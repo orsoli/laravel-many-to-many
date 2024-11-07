@@ -14,6 +14,8 @@
                 <th scope="col">Type</th>
                 <th scope="col">Manager</th>
                 <th scope="col">Description</th>
+                <th scope="col">Technology</th>
+                <th scope="col">Technology description</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +26,10 @@
                 <td>{{$project->type->title}}</td>
                 <td>{{$project->project_manager}}</td>
                 <td>{{$project->description}}</td>
+                @foreach ($project->technologies as $technology)
+                <td>{{$technology->name}}</td>
+                <td>{{$technology->description}}</td>
+                @endforeach
                 {{-- <td>
                     <a href="{{route('projects.show', $projects->id)}}" class="btn btn-sm btn-success"><i
                             class="bi bi-eye-fill"></i></a>
