@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Technoligy;
+use App\Models\Technology;
 use Illuminate\Http\Request;
 
 class TechnoligyController extends Controller
@@ -19,7 +19,7 @@ class TechnoligyController extends Controller
      */
     public function index()
     {
-        $technologies = Technoligy::all();
+        $technologies = Technology::all();
     }
 
     /**
