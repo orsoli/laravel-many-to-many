@@ -16,6 +16,7 @@
                 <th scope="col">Description</th>
                 <th scope="col">Technology</th>
                 <th scope="col">Technology description</th>
+                <th scope="col">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -30,18 +31,18 @@
                 <td>{{$technology->name}}</td>
                 <td>{{$technology->description}}</td>
                 @endforeach
-                {{-- <td>
-                    <a href="{{route('projects.show', $projects->id)}}" class="btn btn-sm btn-success"><i
+                <td class="d-flex gap-2">
+                    <a href="{{route('projects.show', $project)}}" class="btn btn-sm btn-success"><i
                             class="bi bi-eye-fill"></i></a>
-                    <a href="{{route('projects.edit', $projects->id)}}" class="btn btn-sm btn-warning"><i
+                    <a href="{{route('projects.edit', $project)}}" class="btn btn-sm btn-warning"><i
                             class="bi bi-pencil-fill"></i></a>
-                    <form action="{{route('projects.destroy', $projects->id)}}" method="POST" class="d-inline">
+                    <form action="{{route('projects.destroy', $project)}}" method="POST" class="d-inline">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger delete-btn" type="submit" value="delete"
-                            delete-data-name="{{$projects->name}}"><i class="bi bi-trash3-fill"></i></button>
+                            delete-data-name="{{$project->name}}"><i class="bi bi-trash3-fill"></i></button>
                     </form>
-                </td> --}}
+                </td>
             </tr>
             @empty
             abort(404)
