@@ -23,18 +23,18 @@
                 <td>{{$type->title}}</td>
                 <td>{{$type->description}}</td>
                 <td>{{count($type->projects)}}</td>
-                {{-- <td>
-                    <a href="{{route('types.show', $types->id)}}" class="btn btn-sm btn-success"><i
+                <td class="d-flex gap-1">
+                    <a href="{{route('types.show', $type)}}" class="btn btn-sm btn-success"><i
                             class="bi bi-eye-fill"></i></a>
-                    <a href="{{route('types.edit', $types->id)}}" class="btn btn-sm btn-warning"><i
+                    <a href="{{route('types.edit', $type)}}" class="btn btn-sm btn-warning"><i
                             class="bi bi-pencil-fill"></i></a>
-                    <form action="{{route('types.destroy', $types->id)}}" method="POST" class="d-inline">
+                    <form action="{{route('types.destroy', $type)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger delete-btn" type="submit" value="delete"
-                            delete-data-name="{{$types->name}}"><i class="bi bi-trash3-fill"></i></button>
+                            delete-data-name="{{$type->name}}"><i class="bi bi-trash3-fill"></i></button>
                     </form>
-                </td> --}}
+                </td>
             </tr>
             @empty
             abort(404)

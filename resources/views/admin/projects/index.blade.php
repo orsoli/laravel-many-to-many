@@ -31,12 +31,12 @@
                 <td>{{$technology->name}}</td>
                 <td>{{$technology->description}}</td>
                 @endforeach
-                <td class="d-flex gap-2">
+                <td class="d-flex gap-1">
                     <a href="{{route('projects.show', $project)}}" class="btn btn-sm btn-success"><i
                             class="bi bi-eye-fill"></i></a>
                     <a href="{{route('projects.edit', $project)}}" class="btn btn-sm btn-warning"><i
                             class="bi bi-pencil-fill"></i></a>
-                    <form action="{{route('projects.destroy', $project)}}" method="POST" class="d-inline">
+                    <form action="{{route('projects.destroy', $project)}}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger delete-btn" type="submit" value="delete"
