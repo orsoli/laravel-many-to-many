@@ -27,7 +27,7 @@ class TechnoligyController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
