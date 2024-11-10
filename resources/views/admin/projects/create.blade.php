@@ -1,65 +1,79 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <form action="" class="form-control" method="POST">
+<div class="container d-flex justify-content-center">
+    <form action="{{route('projects.store')}}" class="form-control w-75 shadow p-5" method="POST">
         @csrf
 
-        <div class="mb-3">
-            <label for="name" class="form-label">Project Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Project name">
-        </div>
-        <div class="mb-3">
-            <label for="name" class="form-label">Project Manager</label>
-            <input type="text" class="form-control" id="name" placeholder="Project name">
-        </div>
-        <div class="mb-3">
-            <select class="form-select">
-                <option selected disabled>Select technologies</option>
-                <option value="Front-end">Front-End</option>
-                <option value="Back-end">Back-End</option>
-                <option value="Full-stack">Full-Stack</option>
-                <option value="Database">Database</option>
-                <option value="Mobile">Mobile</option>
-                <option value="Devops">Devops</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <div class="d-flex gap-3">
-                <div>
-                    <input type="checkbox" value="" class="form-check-input" id="front-end">
-                    <label for="front-end" class="form-check-label">Website Redesign</label>
-                </div>
-                <div>
-
-                    <input type="checkbox" value="" class="form-check-input" id="back-end">
-                    <label for="back-end" class="form-check-label">API Integration</label>
-                </div>
-                <div>
-
-                    <input type="checkbox" value="" class="form-check-input" id="full-stack">
-                    <label for="full-stack" class="form-check-label">Mobile App Development</label>
-                </div>
-                <div>
-
-                    <input type="checkbox" value="" class="form-check-input" id="database">
-                    <label for="database" class="form-check-label">Data Migration</label>
-                </div>
-                <div>
-
-                    <input type="checkbox" value="" class="form-check-input" id="mobile">
-                    <label for="mobile" class="form-check-label">E-commerce Platform</label>
-                </div>
-                <div>
-
-                    <input type="checkbox" value="" class="form-check-input" id="devops">
-                    <label for="devops" class="form-check-label">CI/CD Implementation</label>
-                </div>
+        <h2 class="text-decoration-underline text-center mb-3">Create new Project</h2>
+        <div class="row mb-3">
+            <div class="col-12 col-lg-6">
+                <label for="name" class="form-label">Project Name</label>
+                <input type="text" class="form-control" name="name" id="name" value="{{old('name')}}">
+                @error('name')
+                <small><i class="text-danger">{{$message}}</i></small>
+                @enderror
             </div>
         </div>
-        <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description" rows="5" cols="7"></textarea>
+        <div class="row mb-3">
+            <div class="col-12 col-lg-6">
+                <label for="project-manager" class="form-label">Project Manager</label>
+                <input type="text" class="form-control" name="project_manager" id="project-manager"
+                    value="{{old('project_manager')}}">
+                @error('project_manager')
+                <small><i class="text-danger">{{$message}}</i></small>
+                @enderror
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12 col-lg-6">
+                <label for="types" class="form-label">Choose Type</label>
+                <select class="form-select" name="type_id" id="types">
+                    <option selected disabled>Select Type</option>
+                    @forelse ($types as $type)
+                    <option value="{{$type->id}}" {{old('type_id')==$type->id ? 'selected' : ''}}>{{$type->title}}
+                    </option>
+                    @empty
+                    <option selected disabled>You have o Types</option>
+                    @endforelse
+                </select>
+                @error(' type_id') <small><i class="text-danger">{{$message}}</i></small>
+                @enderror
+            </div>
+        </div>
+        <div class="mb-3 form-control">
+            <p class="text-decoration-underline">Choose Project Technologies:</p>
+            <div>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+                    @forelse ($technologies as $technology)
+                    <div class="col">
+                        <input type="checkbox" name="technologies[]" value="{{$technology->id}}" {{
+                            in_array($technology->id, old('technologies', [])) ? 'checked' : ''}}
+                        class="form-check-input" id="{{$technology->name}}">
+                        <label for="{{$technology->name}}" class="form-check-label">{{$technology->name}}</label>
+                    </div>
+                    @empty
+                    <p class="text-danger">You have no Technologies</p>
+                    @endforelse
+                </div>
+            </div>
+            @error('technologies')
+            <small><i class="text-danger">{{$message}}</i></small>
+            @enderror
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="description"
+                    rows="3">{{old('description')}}</textarea>
+                @error('description')
+                <small><i class="text-danger">{{$message}}</i></small>
+                @enderror
+            </div>
+        </div>
+        <div class="btns p-2">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="reset" class="btn btn-warning">Reset</button>
         </div>
     </form>
 </div>

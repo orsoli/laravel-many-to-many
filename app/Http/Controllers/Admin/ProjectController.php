@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateUpdateProjectRequest;
+use App\Models\Technology;
+use App\Models\Type;
 
 class ProjectController extends Controller
 {
@@ -27,15 +30,38 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.projects.create');
+        $types = Type::all();
+        $technologies = Technology::all();
+
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateUpdateProjectRequest $request)
     {
-        //
+        dd($request);
+        $formDatas = $request->validated();
+
+        $newProject = Project::create($formDatas);
+
+        // $newProject = new Project();
+        // $newProject->type_id = $formDatas['type_id'];
+        // $newProject->name = $formDatas['name'];
+        // $newProject->description = $formDatas['description'];
+        // $newProject->start_date = $formDatas['start_date'];
+        // $newProject->end_date = $formDatas['end_date'];
+        // $newProject->project_manager = $formDatas['project_manager'];
+        // $newProject->save();
+
+        if(isset($formDatas['technologies'])){
+            $newProject->technologies()->sync($formDatas['technologies']);
+        }else{
+            $newProject->technologies()->detach();
+        }
+
+        return redirect()->route('projects.index');
     }
 
     /**

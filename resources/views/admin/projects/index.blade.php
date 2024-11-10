@@ -3,9 +3,9 @@
 @section('content')
 <div class="container py-5">
     <!-- Create projects Button-->
-    {{-- <a href="{{route('projects.create')}}" type="button" class="btn btn-sm btn-outline-primary mb-3">
+    <a href="{{route('projects.create')}}" type="button" class="btn btn-sm btn-outline-primary mb-3">
         Create new Project
-    </a> --}}
+    </a>
     <table class="table">
         <thead>
             <tr>
@@ -15,7 +15,6 @@
                 <th scope="col">Manager</th>
                 <th scope="col">Description</th>
                 <th scope="col">Technology</th>
-                <th scope="col">Technology description</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
@@ -29,7 +28,6 @@
                 <td>{{$project->description}}</td>
                 @foreach ($project->technologies as $technology)
                 <td>{{$technology->name}}</td>
-                <td>{{$technology->description}}</td>
                 @endforeach
                 <td class="d-flex gap-1">
                     <a href="{{route('projects.show', $project)}}" class="btn btn-sm btn-success"><i
