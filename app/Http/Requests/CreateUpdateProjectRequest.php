@@ -27,11 +27,12 @@ class CreateUpdateProjectRequest extends FormRequest
     {
         return [
             'type_id'=>['required', 'integer'],
-            'technologies'=>['required', 'array', 'exists:technologies,id'],
+            'technologies' => ['array'],
+            'technologies'=>['required', 'exists:technologies,id'],
             'name'=>['required', 'string','min:5', 'max:255','unique:projects,name'],
             'description'=>['string'],
             'start_date'=>['required', 'date'],
-            'end_date'=>['required', 'date'],
+            'end_date'=>['required', 'date', 'after_or_equal:start_date'],
             'project_manager'=>['required', 'string', 'min:3', 'max:50'],
         ];
     }

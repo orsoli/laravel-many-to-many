@@ -24,7 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::prefix('admin')->group(function(){
-    Route::resource('/projects', ProjectController::class);
-    Route::resource('/types', TypeController::class);
+Route::prefix('admin/')->group(function(){
+    Route::resource('projects', ProjectController::class);
+    Route::resource('types', TypeController::class);
 });

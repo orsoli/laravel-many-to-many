@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateUpdateProjectRequest;
 use App\Models\Technology;
 use App\Models\Type;
+use Carbon\Carbon;
 
 class ProjectController extends Controller
 {
@@ -41,19 +42,9 @@ class ProjectController extends Controller
      */
     public function store(CreateUpdateProjectRequest $request)
     {
-        dd($request);
         $formDatas = $request->validated();
 
         $newProject = Project::create($formDatas);
-
-        // $newProject = new Project();
-        // $newProject->type_id = $formDatas['type_id'];
-        // $newProject->name = $formDatas['name'];
-        // $newProject->description = $formDatas['description'];
-        // $newProject->start_date = $formDatas['start_date'];
-        // $newProject->end_date = $formDatas['end_date'];
-        // $newProject->project_manager = $formDatas['project_manager'];
-        // $newProject->save();
 
         if(isset($formDatas['technologies'])){
             $newProject->technologies()->sync($formDatas['technologies']);
