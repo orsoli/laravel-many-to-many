@@ -26,9 +26,11 @@
                 <td>{{$project->type->title}}</td>
                 <td>{{$project->project_manager}}</td>
                 <td>{{$project->description}}</td>
-                @foreach ($project->technologies as $technology)
-                <td>{{$technology->name}}</td>
-                @endforeach
+                <td>
+                    @foreach ($project->technologies as $technology)
+                    <span class="badge text-bg-secondary">{{$technology->name}}</span>
+                    @endforeach
+                </td>
                 <td class="d-flex gap-1">
                     <a href="{{route('projects.show', $project)}}" class="btn btn-sm btn-success"><i
                             class="bi bi-eye-fill"></i></a>
