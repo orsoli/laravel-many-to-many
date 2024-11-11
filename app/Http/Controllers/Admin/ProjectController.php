@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateUpdateProjectRequest;
 use App\Models\Technology;
 use App\Models\Type;
-use Carbon\Carbon;
 
 class ProjectController extends Controller
 {

@@ -64,14 +64,15 @@
         <div class="row row-cols-1 row-cols-md-2 mb-3">
             <div class="col">
                 <label for="start-date" class="form-label">Start Date</label>
-                <input type="date" name="start_date" id="start-date" class="form-control">
+                <input type="date" name="start_date" id="start-date" value="{{old('start_date', '' )}}"
+                    class="form-control">
                 @error('start_date')
                 <small><i class="text-danger">{{$message}}</i></small>
                 @enderror
             </div>
             <div class="col">
                 <label for="end-date" class="form-label">End Date</label>
-                <input type="date" name="end_date" id="end-date" class="form-control">
+                <input type="date" name="end_date" id="end-date" value="{{old('end_date', '' )}}" class="form-control">
                 @error('end_date')
                 <small><i class="text-danger">{{$message}}</i></small>
                 @enderror

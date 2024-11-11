@@ -32,7 +32,7 @@ class CreateUpdateProjectRequest extends FormRequest
             'name'=>['required', 'string','min:5', 'max:255','unique:projects,name'],
             'description'=>['string'],
             'start_date'=>['required', 'date'],
-            'end_date'=>['required', 'date', 'after_or_equal:start_date'],
+            'end_date'=>['required', 'date', 'after:start_date'],
             'project_manager'=>['required', 'string', 'min:3', 'max:50'],
         ];
     }
