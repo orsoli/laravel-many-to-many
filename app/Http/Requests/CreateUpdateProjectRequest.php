@@ -31,6 +31,7 @@ class CreateUpdateProjectRequest extends FormRequest
             'technologies'=>['required', 'exists:technologies,id'],
             'name'=>['required', 'string','min:5', 'max:255','unique:projects,name'],
             'description'=>['string'],
+            'image_url'=>['nullable','image','max:250'],
             'start_date'=>['required', 'date'],
             'end_date'=>['required', 'date', 'after:start_date'],
             'project_manager'=>['required', 'string', 'min:3', 'max:50'],

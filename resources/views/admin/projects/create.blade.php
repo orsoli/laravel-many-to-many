@@ -2,7 +2,8 @@
 
 @section('content')
 <div class="container d-flex justify-content-center">
-    <form action="{{route('projects.store')}}" class="form-control w-75 shadow p-5" method="POST">
+    <form action="{{route('projects.store')}}" class="form-control w-75 shadow p-5" method="POST"
+        enctype="multipart/form-data">
         @csrf
 
         <h2 class="text-decoration-underline text-center mb-3">Create new Project</h2>

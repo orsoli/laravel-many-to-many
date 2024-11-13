@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\CreateUpdateProjectRequest;
 use App\Models\Technology;
 use App\Models\Type;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -43,7 +44,11 @@ class ProjectController extends Controller
     {
         $formDatas = $request->validated();
 
+        $filepath = Storage::disk('public')->put('img/projects/', $request->image_url); // Save the url of image inputed
+        $formDatas['image_url'] = $filepath; //Rewrite the value f image_url in $formdata
+
         $newProject = Project::create($formDatas);
+
 
         if(isset($formDatas['technologies'])){
             $newProject->technologies()->sync($formDatas['technologies']);
