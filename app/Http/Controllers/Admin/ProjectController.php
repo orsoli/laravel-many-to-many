@@ -46,7 +46,7 @@ class ProjectController extends Controller
 
         // Check if in request is a valid value for image_url
         if($request->hasFile('image_url')){
-            $filepath = Storage::disk('public')->put('img/projects/', $request->image_url); // Save the url of image inputed
+            $filepath = Storage::put('img/projects/', $request->image_url); // Save the url of image inputed
             $formDatas['image_url'] = $filepath; //Rewrite the value f image_url in $formdata
         }
 
@@ -73,7 +73,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
         //
     }
@@ -81,7 +81,7 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(CreateUpdateProjectRequest $request, Project $project)
     {
         //
     }
@@ -89,7 +89,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
         //
     }
