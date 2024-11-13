@@ -27,7 +27,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-12 col-lg-6">
-                <label for="types" class="form-label">Choose Type</label>
+                <label for="types" class="form-label">Select Type</label>
                 <select class="form-select" name="type_id" id="types">
                     <option selected disabled>Select Type</option>
                     @forelse ($types as $type)
@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="mb-3 form-control">
-            <p class="text-decoration-underline">Choose Project Technologies:</p>
+            <p class="text-decoration-underline">Check Project Technologies:</p>
             <div>
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
                     @forelse ($technologies as $technology)
@@ -74,6 +74,15 @@
                 <label for="end-date" class="form-label">End Date</label>
                 <input type="date" name="end_date" id="end-date" value="{{old('end_date', '' )}}" class="form-control">
                 @error('end_date')
+                <small><i class="text-danger">{{$message}}</i></small>
+                @enderror
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 mb-3">
+            <div class="col">
+                <label for="image_url" class="form-label">Choose image</label>
+                <input type="file" name="image_url" id="image_url" class="form-control">
+                @error('image_url')
                 <small><i class="text-danger">{{$message}}</i></small>
                 @enderror
             </div>
