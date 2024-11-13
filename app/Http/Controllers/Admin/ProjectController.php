@@ -44,8 +44,11 @@ class ProjectController extends Controller
     {
         $formDatas = $request->validated();
 
-        $filepath = Storage::disk('public')->put('img/projects/', $request->image_url); // Save the url of image inputed
-        $formDatas['image_url'] = $filepath; //Rewrite the value f image_url in $formdata
+        // Check if in request is a valid value for image_url
+        if($request->hasFile('image_url')){
+            $filepath = Storage::disk('public')->put('img/projects/', $request->image_url); // Save the url of image inputed
+            $formDatas['image_url'] = $filepath; //Rewrite the value f image_url in $formdata
+        }
 
         $newProject = Project::create($formDatas);
 
