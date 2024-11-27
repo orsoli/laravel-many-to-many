@@ -49,5 +49,9 @@
             @endforelse
         </tbody>
     </table>
+
+    <div>
+        {{$projects->links('vendor.pagination.simple-bootstrap-5')}}
+    </div>
 </div>
 @endsection

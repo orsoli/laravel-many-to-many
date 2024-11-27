@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-use Illuminate\Http\Request;
 use App\Http\Requests\CreateUpdateProjectRequest;
 use App\Models\Technology;
 use App\Models\Type;
@@ -22,7 +21,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        // $projects = Project::all();
+        $projects = Project::paginate(10);
+
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -76,6 +77,7 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         //
+        return view('admin.projects.edit', compact('project'));
     }
 
     /**
@@ -83,7 +85,15 @@ class ProjectController extends Controller
      */
     public function update(CreateUpdateProjectRequest $request, Project $project)
     {
-        //
+        $formDatas = $request->validated();
+
+        if($request->hasFile('image_url')){
+            $filepath = Storage::put('img/projects', $request->image_url);
+            $formDatas['image_url'] = $filepath;
+        }
+
+        $project->update($formDatas);
+
     }
 
     /**
